@@ -1,5 +1,6 @@
 package com.sparta.orderproduct.product.entity;
 
+import com.sparta.orderproduct.exception.OutOfStockException;
 import com.sparta.orderproduct.product.dto.ProductRequestDto;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
@@ -50,5 +51,12 @@ public class Product {
         this.product_name = requestDto.getProduct_name();
         this.product_price = requestDto.getProduct_price();
         this.product_stock = requestDto.getProduct_stock();
+    }
+
+    public void decreaseStock(int quantity) {
+        if (this.product_stock < quantity) {
+            throw new OutOfStockException("해당 상품의 수량이 부족합니다.");
+        }
+        this.product_stock -= quantity;
     }
 }

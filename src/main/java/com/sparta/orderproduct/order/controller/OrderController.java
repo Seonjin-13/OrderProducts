@@ -21,6 +21,8 @@ public class OrderController {
         Product product = productRepository.findById(orderRequestDto.getProduct_id())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 주문입니다."));
 
+        product.decreaseStock(orderRequestDto.getProduct_quantity());
+
         Order order = new Order(product, orderRequestDto.getProduct_quantity(), "CREATED");
         Order saveOrder = orderRepository.save(order);
 
