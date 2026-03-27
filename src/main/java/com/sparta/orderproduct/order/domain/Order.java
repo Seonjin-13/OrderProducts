@@ -1,6 +1,6 @@
 package com.sparta.orderproduct.order.domain;
 
-import com.sparta.orderproduct.product.domain.Product;
+import com.sparta.orderproduct.product.entity.Product;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
