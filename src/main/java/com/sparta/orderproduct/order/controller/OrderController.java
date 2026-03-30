@@ -4,10 +4,13 @@ import com.sparta.orderproduct.order.dto.OrderRequestDto;
 import com.sparta.orderproduct.order.dto.OrderResponseDto;
 import com.sparta.orderproduct.order.entity.Order;
 import com.sparta.orderproduct.order.repository.OrderRepository;
+import com.sparta.orderproduct.product.dto.ProductResponseDto;
 import com.sparta.orderproduct.product.entity.Product;
 import com.sparta.orderproduct.product.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequiredArgsConstructor
@@ -35,5 +38,12 @@ public class OrderController {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 주문입니다."));
 
         return new OrderResponseDto(order);
+    }
+
+    @GetMapping("/orders")
+    public List<OrderResponseDto> getOrders() {
+        return orderRepository.findAll().stream()
+                .map(OrderResponseDto::new)
+                .toList();
     }
 }
