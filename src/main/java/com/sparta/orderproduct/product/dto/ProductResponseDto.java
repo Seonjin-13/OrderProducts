@@ -7,18 +7,18 @@ import java.time.LocalDateTime;
 
 @Getter
 public class ProductResponseDto {
-    private Long product_id;
-    private String product_name;
-    private Integer product_price;
-    private Integer product_stock;
+    private Long productId;
+    private String productName;
+    private Integer productPrice;
+    private Integer productStock;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
 
     public ProductResponseDto(Product product) {
-        this.product_id = product.getProduct_id();
-        this.product_name = product.getProduct_name();
-        this.product_price = product.getProduct_price();
-        this.product_stock = product.getProduct_stock();
+        this.productId = product.getProductId();
+        this.productName = product.getProductName();
+        this.productPrice = product.getProductPrice();
+        this.productStock = product.getProductStock();
         this.createdAt = product.getCreatedAt();
         this.updatedAt = product.getUpdatedAt();
     }

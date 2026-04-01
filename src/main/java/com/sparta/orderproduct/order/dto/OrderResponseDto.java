@@ -7,19 +7,19 @@ import java.time.LocalDateTime;
 
 @Getter
 public class OrderResponseDto {
-    private final Long order_id;
-    private final Long product_id;
-    private final String product_name;
-    private final Integer product_quantity;
+    private final Long orderId;
+    private final Long productId;
+    private final String productName;
+    private final Integer productQuantity;
     private final String status;
-    private final LocalDateTime created_at;
+    private final LocalDateTime createdAt;
 
     public OrderResponseDto(Order order) {
-        this.order_id = order.getOrder_id();
-        this.product_id = order.getProduct().getProduct_id();
-        this.product_name = order.getProduct().getProduct_name();
-        this.product_quantity = order.getProduct_quantity();
+        this.orderId = order.getOrderId();
+        this.productId = order.getProduct().getProductId();
+        this.productName = order.getProduct().getProductName();
+        this.productQuantity = order.getProductQuantity();
         this.status = order.getStatus();
-        this.created_at = order.getCreated_at();
+        this.createdAt = order.getCreatedAt();
     }
 }

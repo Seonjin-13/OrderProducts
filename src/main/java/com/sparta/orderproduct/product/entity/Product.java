@@ -22,16 +22,16 @@ public class Product {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "product_id")
-    private Long product_id;
+    private Long productId;
 
     @Column(name = "product_name", nullable = false, length = 100)
-    private String product_name;
+    private String productName;
 
     @Column(name = "product_price", nullable = false)
-    private Integer product_price;
+    private Integer productPrice;
 
     @Column(name = "product_stock", nullable = false)
-    private Integer product_stock;
+    private Integer productStock;
 
     @CreationTimestamp
     @Column(name = "created_at", nullable = false, updatable = false)
@@ -42,21 +42,21 @@ public class Product {
     private LocalDateTime updatedAt;
 
     public Product(ProductRequestDto requestDto) {
-        this.product_name = requestDto.getProduct_name();
-        this.product_price = requestDto.getProduct_price();
-        this.product_stock = requestDto.getProduct_stock();
+        this.productName = requestDto.getProductName();
+        this.productPrice = requestDto.getProductPrice();
+        this.productStock = requestDto.getProductStock();
     }
 
     public void update(ProductRequestDto requestDto) {
-        this.product_name = requestDto.getProduct_name();
-        this.product_price = requestDto.getProduct_price();
-        this.product_stock = requestDto.getProduct_stock();
+        this.productName = requestDto.getProductName();
+        this.productPrice = requestDto.getProductPrice();
+        this.productStock = requestDto.getProductStock();
     }
 
     public void decreaseStock(int quantity) {
-        if (this.product_stock < quantity) {
+        if (this.productStock < quantity) {
             throw new OutOfStockException("해당 상품의 수량이 부족합니다.");
         }
-        this.product_stock -= quantity;
+        this.productStock -= quantity;
     }
 }

@@ -21,12 +21,12 @@ public class OrderController {
 
     @PostMapping("/orders")
     public OrderResponseDto createOrder(@RequestBody OrderRequestDto orderRequestDto) {
-        Product product = productRepository.findById(orderRequestDto.getProduct_id())
+        Product product = productRepository.findById(orderRequestDto.getProductId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 주문입니다."));
 
-        product.decreaseStock(orderRequestDto.getProduct_quantity());
+        product.decreaseStock(orderRequestDto.getProductQuantity());
 
-        Order order = new Order(product, orderRequestDto.getProduct_quantity(), "CREATED");
+        Order order = new Order(product, orderRequestDto.getProductQuantity(), "CREATED");
         Order saveOrder = orderRepository.save(order);
 
         return new OrderResponseDto(saveOrder);
