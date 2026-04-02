@@ -3,6 +3,7 @@ package com.sparta.orderproduct.product.controller;
 import com.sparta.orderproduct.product.dto.ProductRequestDto;
 import com.sparta.orderproduct.product.dto.ProductResponseDto;
 import com.sparta.orderproduct.product.service.ProductService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -15,7 +16,7 @@ public class ProductController {
     private final ProductService productService;
 
     @PostMapping("/products")
-    public ProductResponseDto createProduct(@RequestBody ProductRequestDto productRequestDto) {
+    public ProductResponseDto createProduct(@RequestBody @Valid ProductRequestDto productRequestDto) {
         return productService.createProduct(productRequestDto);
     }
 
@@ -31,7 +32,7 @@ public class ProductController {
 
     @PutMapping("/products/{productId}")
     public ProductResponseDto updateProduct(@PathVariable Long productId,
-            @RequestBody ProductRequestDto productRequestDto) {
+            @RequestBody @Valid ProductRequestDto productRequestDto) {
         return productService.updateProduct(productId, productRequestDto);
     }
 

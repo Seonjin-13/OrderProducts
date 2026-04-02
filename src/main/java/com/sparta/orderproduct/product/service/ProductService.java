@@ -52,6 +52,10 @@ public class ProductService {
         Product product = productRepository.findByIdWithLock(productId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상품입니다."));
 
+        if (product.getDeletedAt() != null) {
+            throw new IllegalArgumentException("삭제된 상품입니다.");
+        }
+
         product.update(productRequestDto);
 
         Product updateProduct = productRepository.save(product);
