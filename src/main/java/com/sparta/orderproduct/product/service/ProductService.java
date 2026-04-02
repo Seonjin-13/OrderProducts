@@ -27,6 +27,13 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public List<ProductResponseDto> getProducts() {
+        return productRepository.findAllByDeletedAtIsNull().stream()
+                .map(ProductResponseDto::new)
+                .toList();
+    }
+
+    @Transactional(readOnly = true)
+    public List<ProductResponseDto> getAllProducts() {
         return productRepository.findAll().stream()
                 .map(ProductResponseDto::new)
                 .toList();

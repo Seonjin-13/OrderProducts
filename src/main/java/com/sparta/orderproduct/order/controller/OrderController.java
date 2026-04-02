@@ -4,6 +4,7 @@ import com.sparta.orderproduct.order.dto.OrderRequestDto;
 import com.sparta.orderproduct.order.dto.OrderResponseDto;
 
 import com.sparta.orderproduct.order.service.OrderService;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,7 +17,7 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/orders")
-    public OrderResponseDto createOrder(@RequestBody OrderRequestDto orderRequestDto) {
+    public OrderResponseDto createOrder(@RequestBody @Valid OrderRequestDto orderRequestDto) {
         return orderService.createOrder(orderRequestDto);
     }
 

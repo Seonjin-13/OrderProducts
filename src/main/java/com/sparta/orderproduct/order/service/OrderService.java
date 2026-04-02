@@ -24,6 +24,10 @@ public class OrderService {
         Product product = productRepository.findByIdWithLock(orderRequestDto.getProductId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상품입니다."));
 
+        if (product.getDeletedAt() != null) {
+            throw new IllegalArgumentException("존재하지 않는 상품입니다.");
+        }
+
         product.decreaseStock(orderRequestDto.getProductQuantity());
 
         Order order = new Order(product, orderRequestDto.getProductQuantity(), "CREATED");

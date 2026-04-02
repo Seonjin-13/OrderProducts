@@ -2,16 +2,11 @@ package com.sparta.orderproduct.product.controller;
 
 import com.sparta.orderproduct.product.dto.ProductRequestDto;
 import com.sparta.orderproduct.product.dto.ProductResponseDto;
-import com.sparta.orderproduct.product.entity.Product;
-import com.sparta.orderproduct.product.repository.ProductRepository;
 import com.sparta.orderproduct.product.service.ProductService;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Stack;
 
 @RestController
 @RequiredArgsConstructor
@@ -43,5 +38,10 @@ public class ProductController {
     @DeleteMapping("/products/{productId}")
     public String deleteProduct(@PathVariable Long productId) {
         return productService.deleteProduct(productId);
+    }
+
+    @GetMapping("/admin/products")
+    public List<ProductResponseDto> getAllProducts() {
+        return productService.getAllProducts();
     }
 }

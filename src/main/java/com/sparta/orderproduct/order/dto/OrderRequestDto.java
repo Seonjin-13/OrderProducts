@@ -6,6 +6,7 @@ import lombok.Getter;
 
 @Getter
 public class OrderRequestDto {
+    @NotNull(message = "상품 ID를 입력해주세요.")
     private Long productId;
 
     @NotNull(message = "주문 수량을 입력해주세요.")
