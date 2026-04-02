@@ -27,6 +27,12 @@ public class Order {
     @Column(name = "product_quantity", nullable = false)
     private Integer productQuantity;
 
+    @Column(name = "product_price", nullable = false)
+    private Integer productPrice;
+
+    @Column(name = "total_price", nullable = false)
+    private Integer totalPrice;
+
     @Column(name = "status", nullable = false, length = 30)
     private String status;
 
@@ -37,6 +43,8 @@ public class Order {
     public Order(Product product, Integer productQuantity, String status) {
         this.product = product;
         this.productQuantity = productQuantity;
+        this.productPrice = product.getProductPrice();
+        this.totalPrice = this.productPrice * this.productQuantity;
         this.status = "CREATED";
     }
 }

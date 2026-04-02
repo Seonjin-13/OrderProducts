@@ -11,6 +11,8 @@ public class OrderResponseDto {
     private final Long productId;
     private final String productName;
     private final Integer productQuantity;
+    private final Integer productPrice;
+    private final Integer totalPrice;
     private final String status;
     private final LocalDateTime createdAt;
 
@@ -19,6 +21,8 @@ public class OrderResponseDto {
         this.productId = order.getProduct().getProductId();
         this.productName = order.getProduct().getProductName();
         this.productQuantity = order.getProductQuantity();
+        this.productPrice = order.getProductPrice();
+        this.totalPrice = order.getTotalPrice();
         this.status = order.getStatus();
         this.createdAt = order.getCreatedAt();
     }

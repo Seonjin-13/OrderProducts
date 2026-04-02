@@ -58,7 +58,12 @@ public class ProductController {
         Product product = productRepository.findById(productId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상품입니다."));
 
-        productRepository.delete(product);
+        if (product.getDeletedAt() != null) {
+            throw new IllegalStateException("이미 삭제된 상품입니다.");
+        }
+
+        product.delete();
+        productRepository.save(product);
 
         return "상품이 삭제되었습니다.";
     }

@@ -13,6 +13,7 @@ public class ProductResponseDto {
     private Integer productStock;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
+    private LocalDateTime deletedAt;
 
     public ProductResponseDto(Product product) {
         this.productId = product.getProductId();
@@ -21,5 +22,6 @@ public class ProductResponseDto {
         this.productStock = product.getProductStock();
         this.createdAt = product.getCreatedAt();
         this.updatedAt = product.getUpdatedAt();
+        this.deletedAt = product.getDeletedAt();
     }
 }
