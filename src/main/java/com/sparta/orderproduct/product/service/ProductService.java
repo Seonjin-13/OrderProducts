@@ -42,7 +42,7 @@ public class ProductService {
 
     @Transactional
     public ProductResponseDto updateProduct(Long productId, ProductRequestDto productRequestDto) {
-        Product product = productRepository.findById(productId)
+        Product product = productRepository.findByIdWithLock(productId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상품입니다."));
 
         product.update(productRequestDto);
@@ -54,7 +54,7 @@ public class ProductService {
 
     @Transactional
     public String deleteProduct(Long productId) {
-        Product product = productRepository.findById(productId)
+        Product product = productRepository.findByIdWithLock(productId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상품입니다."));
 
         if (product.getDeletedAt() != null) {

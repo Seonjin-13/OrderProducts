@@ -21,7 +21,7 @@ public class OrderService {
 
     @Transactional
     public OrderResponseDto createOrder(OrderRequestDto orderRequestDto) {
-        Product product = productRepository.findById(orderRequestDto.getProductId())
+        Product product = productRepository.findByIdWithLock(orderRequestDto.getProductId())
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 상품입니다."));
 
         product.decreaseStock(orderRequestDto.getProductQuantity());
